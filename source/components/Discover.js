@@ -7,7 +7,7 @@ const { width, height } = Dimensions.get("screen");
 export default function Discover(props) {
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>{props.Standout[0].title}</Text>
+            <Text style={[styles.header,props.styleHeader]}>{props.Standout[0].title}</Text>
             <Text style={styles.context}>{props.Standout[0].context}</Text>
             {
                 props.Standout[0].buttonText.length>0?<View style={styles.button}>

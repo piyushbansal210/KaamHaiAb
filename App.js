@@ -6,6 +6,9 @@ import Define from './source/components/Define'
 import Home from './source/screens/Home'
 import AboutUs from './source/screens/AboutUs';
 import Blog from './source/screens/Blog';
+import PortFolio from './source/screens/PortFolio';
+import Jobs from './source/screens/Jobs';
+import Application from './source/screens/Application';
 
 export default function App() {
 
@@ -27,7 +30,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Blog/>
+      <Home/>
       <SB style="auto" />
     </View>
   );
