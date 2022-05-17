@@ -24,7 +24,8 @@ export default function Blog(props) {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: '#f4f4f4'
+    borderColor: '#f4f4f4',
+    backgroundColor:'#f4f4f4'
   },
   image: {
     width: '100%',

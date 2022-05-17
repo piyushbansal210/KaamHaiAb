@@ -10,7 +10,8 @@ const { width, height } = Dimensions.get('screen')
 
 export default function Jobs() {
     return (
-        <ScrollView>
+        <ScrollView style={{backgroundColor:'white'}}>
+            
             <Discover Standout={Opening} styleHeader={{ fontSize: 30 }} />
             <Image
                 source={OPENING}

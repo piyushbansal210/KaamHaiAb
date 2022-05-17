@@ -15,7 +15,7 @@ export default function BlogItem({data}) {
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'#f4f4f4',
+        backgroundColor:'#fff',
         marginHorizontal:20,
         elevation:6,
         marginVertical:12

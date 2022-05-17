@@ -19,11 +19,19 @@ import Testimonial from '../components/Testimonial'
 import BlogCarousel from '../components/BlogCarousel'
 import Blog from '../components/Blog'
 
+import LOGO from '../assets/images/companylogo.png'
+
 const { width, height } = Dimensions.get('screen')
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false} >
+      <View style={{backgroundColor:'black',alignItems:'center',justifyContent: 'center',marginBottom:20}}>
+        <Image
+          source={LOGO}
+          style={{width:width/4, height:width/4,resizeMode:'contain',}}
+        />
+      </View>
 
       {
         DEFINE.map(item => {
@@ -65,10 +73,11 @@ const styles = StyleSheet.create({
     width: width / 1.1,
     height: width / 1.8,
     resizeMode: 'contain',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   container: {
     justifyContent: 'center',
+    backgroundColor: 'white'
   },
   imageContainer:{ 
     alignItems: 'center' ,

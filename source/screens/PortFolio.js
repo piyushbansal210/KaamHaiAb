@@ -13,7 +13,7 @@ const Items = [
     "All",
 ]
 
-
+import LOGO from '../assets/images/companylogo.png'
 
 export default function PortFolio() {
     const [item, setItem] = React.useState("")
@@ -37,7 +37,13 @@ export default function PortFolio() {
     const PortfolioHeader = () => {
         return (
             <View>
-                <Text style={{ marginHorizontal: 10, fontFamily: 'Medium', fontSize: 30,marginTop:10 }}>Our Products</Text>
+                <View style={{ backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }}>
+                    <Image
+                        source={LOGO}
+                        style={{ width: width / 4, height: width / 4, resizeMode: 'contain', }}
+                    />
+                </View>
+                <Text style={{ marginHorizontal: 10, fontFamily: 'Medium', fontSize: 30, marginTop: 10, color: 'black' }}>Our Products</Text>
                 <FlatList
                     data={Items}
                     numColumns={2}
@@ -60,7 +66,7 @@ export default function PortFolio() {
                 showsVerticalScrollIndicator={false}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
-                    <View style={{backgroundColor:'orange',margin: 10,elevation:8}}>
+                    <View style={{ backgroundColor: 'orange', margin: 10, elevation: 8 }}>
                         <Image source={{ uri: item.image }} style={styles.image} />
                     </View>
 
@@ -74,7 +80,7 @@ export default function PortFolio() {
 
 const styles = StyleSheet.create({
     container: {
-
+        backgroundColor: '#fff'
     },
     button: {
         backgroundColor: '#27cccb',
@@ -92,6 +98,6 @@ const styles = StyleSheet.create({
     image: {
         width: width - 20,
         height: width - 50,
-        
+
     }
 })

@@ -1,7 +1,7 @@
 export default [
     {
         id:1,
-        title:'WEB DESIGNING',
+        title:'WEB DEVELOPMENT',
         context:'Design your website to define your worth. We have a special team, who can create professional websites of any category at the best rates.',
         color:'#ffe724'
     },

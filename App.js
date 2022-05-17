@@ -9,6 +9,10 @@ import Blog from './source/screens/Blog';
 import PortFolio from './source/screens/PortFolio';
 import Jobs from './source/screens/Jobs';
 import Application from './source/screens/Application';
+import BlogDisplay from './source/screens/BlogDisplay';
+import Service from './source/screens/Service';
+import Navigation from './source/Navigation/index'
+import Splash from './source/screens/Splash';
 
 export default function App() {
 
@@ -30,8 +34,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Home/>
-      <SB style="auto" />
+      <Navigation/>
+      <SB style="light" backgroundColor='black' />
     </View>
   );
 }
@@ -40,6 +44,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop:Platform.OS === 'ios' ? 0 : StatusBar.currentHeight+10
+    marginTop:Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
   },
 });
+
+
+//1b1b1b
+//222222

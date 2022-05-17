@@ -8,6 +8,9 @@ import Progress from '../components/Progress'
 import Vision from '../assets/data/Vision'
 import Mission from '../assets/data/Mission'
 import Team from '../components/Team'
+import BlogCarousel from '../components/BlogCarousel'
+
+import LOGO from '../assets/images/companylogo.png'
 
 const { height, width } = Dimensions.get('screen')
 
@@ -48,9 +51,12 @@ const client = [
 
 export default function AboutUs() {
   return (
-    <ScrollView>
-      <View style={styles.what}>
-        <Text style={styles.whatText}>WHAT DO WE DO?</Text>
+    <ScrollView style={{backgroundColor:'white'}}>
+      <View style={{backgroundColor:'black',alignItems:'center',justifyContent: 'center'}}>
+        <Image
+          source={LOGO}
+          style={{width:width/4, height:width/4,resizeMode:'contain',}}
+        />
       </View>
       
       <CreateProject />
@@ -73,6 +79,7 @@ export default function AboutUs() {
           })
         }
       </View>
+      
       <Discover Standout={Mission} />
       <View style={styles.teamContainer}>
         <Text style={styles.team}>MEET OUR TEAM</Text>
@@ -80,6 +87,7 @@ export default function AboutUs() {
       <View style={styles.teamData}>
         <Team />
       </View>
+      
         <View style={{height:20}}/>
     </ScrollView>
   )

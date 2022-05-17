@@ -13,7 +13,7 @@ LogBox.ignoreAllLogs();
 
 export default function Contact() {
     return (
-        <ScrollView>
+        <ScrollView style={{backgroundColor:'white'}}>
             <Suggestion/>
             <Address/>
             <ContactFrom/>
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     map: {
-        margin:15,
+        marginHorizontal:15,
+        marginBottom:15,
         width:width-30,
         height: width-30,
     },

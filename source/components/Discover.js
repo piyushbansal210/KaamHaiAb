@@ -6,7 +6,7 @@ const { width, height } = Dimensions.get("screen");
 
 export default function Discover(props) {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,props.styleContainer]}>
             <Text style={[styles.header,props.styleHeader]}>{props.Standout[0].title}</Text>
             <Text style={styles.context}>{props.Standout[0].context}</Text>
             {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginHorizontal: 15,
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 20,
     },
     button: {
         flexDirection: 'row',
