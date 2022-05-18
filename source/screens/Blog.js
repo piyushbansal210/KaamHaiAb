@@ -7,7 +7,7 @@ import LOGO from '../assets/images/companylogo.png'
 
 const { width, height } = Dimensions.get('screen')
 
-export default function Blog() {
+export default function Blog({navigation}) {
   return (
     <ScrollView style={{backgroundColor:'white'}}>
       
@@ -21,7 +21,7 @@ export default function Blog() {
       <View>
         {
           Blogdata.map((item)=>{
-            return <BlogItem key={item.id} data={item}/>
+            return <BlogItem key={item.id} data={item} navigation={navigation}/>
           })
         }
         

@@ -2,7 +2,6 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
 export default function Bar(props) {
-  console.log(props.item.percentage)
   return (
     <View style={styles.container}>
       <View style={styles.textPrcentage}>

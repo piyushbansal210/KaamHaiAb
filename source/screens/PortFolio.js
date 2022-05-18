@@ -28,7 +28,6 @@ export default function PortFolio() {
     }
 
     React.useEffect(() => {
-        console.log(item)
         if (item === "") setItem("All")
 
         getData()

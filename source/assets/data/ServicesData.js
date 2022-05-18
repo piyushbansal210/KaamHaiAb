@@ -1,7 +1,7 @@
 export default[
     {
         id:1,
-        serviceName:'Development',
+        serviceName:'WEB DEVELOPMENT',
         serviceTitle:'Web And App Development Company In Chandigarh',
         serviceText:'E-commerce Development is on trending now a days. Webroot Technologies is a renowned and top e-Commerce development company in Chandigarh that provides end-to-end solutions for today’s demanding customers. We have expertise in developing eCommerce websites on different platforms like Shopify, Magento, Woocommerce, etc. Our experienced developers cater to the varied needs of the businesses, offering them tailored eCommerce solutions that address their customers’ needs.',
         serviceImage:'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
@@ -27,7 +27,7 @@ export default[
     },
     {
         id:2,
-        serviceName:'Marketing',
+        serviceName:'MARKETING',
         serviceTitle:'Marketing Services In Chandigarh',
         serviceText:'search engine marketing is a highly effective way to increase your ranks on search engines like Google, and attract necessary traffic to your website. Investing in SEM is a great way to grow brand awareness and increase sales of a company. SEM is a type of digital marketing strategy that focuses on getting your company or your brand on the first page, if not the first position, of search engine results.',
         serviceImage:'https://webroottech.com/wp-content/uploads/2022/03/sem.jpg',
@@ -52,7 +52,7 @@ export default[
     },
     {
         id:3,
-        serviceName:'Design',
+        serviceName:'GRAPHIC DESIGNING',
         serviceTitle:'Designing Company In Chandigarh',
         serviceText:'A well-designed logo is much more than a visual component. It plays a vital role in recognition of brands. As the top logo designing company in Chandigarh, our professional logo designers understand how to create a memorable logo that stands out, resulting in developing a unique identity. Get our logo design services to obtain the ideal emblem for your brand.',
         serviceImage:'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',

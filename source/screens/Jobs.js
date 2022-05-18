@@ -8,7 +8,7 @@ import JobPortal from '../components/JobPortal'
 
 const { width, height } = Dimensions.get('screen')
 
-export default function Jobs() {
+export default function Jobs({navigation}) {
     return (
         <ScrollView style={{backgroundColor:'white'}}>
             
@@ -18,9 +18,9 @@ export default function Jobs() {
                 style={styles.image}
             />
             <View style={styles.portal}>
-                <JobPortal />
+                <JobPortal navigation={navigation} />
             </View>
-            <View style={{marginBottom:20}}/>
+            <View style={{marginBottom:10}}/>
         </ScrollView>
     )
 }

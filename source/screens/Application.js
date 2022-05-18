@@ -3,12 +3,12 @@ import React from 'react'
 import { Checkbox } from 'react-native-paper';
 const { width, height } = Dimensions.get('screen')
 
-export default function Application() {
-
+export default function Application({route}) {
   const [checked, setChecked] = React.useState(false);
-
+  const Job = route.params.jobName;
+  console.log(Job)
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor:'white'}}>
 
     <View style={styles.container}>
       <Text style={{ fontFamily: 'Demi', color: '#000', fontSize: 30 }}>Apply  For This Position</Text>

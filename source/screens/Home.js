@@ -20,26 +20,27 @@ import BlogCarousel from '../components/BlogCarousel'
 import Blog from '../components/Blog'
 
 import LOGO from '../assets/images/companylogo.png'
+import Slider from '../components/Slider';
 
 const { width, height } = Dimensions.get('screen')
 
 export default function Home({navigation}) {
   return (
     <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false} >
-      <View style={{backgroundColor:'black',alignItems:'center',justifyContent: 'center',marginBottom:20}}>
+      <View style={{backgroundColor:'#000',alignItems:'center',justifyContent: 'center',}}>
         <Image
           source={LOGO}
           style={{width:width/4, height:width/4,resizeMode:'contain',}}
         />
       </View>
-
+      <Slider/>
       {
         DEFINE.map(item => {
-          return <Define item={item} key={item.id} />
+          return <Define item={item} key={item.id} navigation={navigation} />
         })
       }
 
-      <Discover Standout={Standout} />
+      <Discover Standout={Standout} navigation={navigation}/>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
@@ -47,7 +48,7 @@ export default function Home({navigation}) {
         />
 
       </View>
-      <Discover Standout={Expertise} />
+      <Discover Standout={Expertise} navigation={navigation}/>
       <View style={styles.infoImage}>
         {
           ImageData.map(item=>{
@@ -56,10 +57,10 @@ export default function Home({navigation}) {
         }
       </View>
       <MakeAppointment/>
-      <Discover Standout={Who} />
+      <Discover Standout={Who} navigation={navigation} />
       <Progress/>
       <Testimonial/>
-      <BlogCarousel/>
+      <BlogCarousel navigation={navigation}/>
       
       <View
         style={{height:20}}

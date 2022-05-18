@@ -8,7 +8,6 @@ import Discover from '../components/Discover'
 import ContactDetails from '../components/ContactDetails'
 
 export default function BlogDisplay() {
-    console.log()
     return (
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ }}>
             <Text style={{fontSize:30,fontFamily:'Medium',color:'#27cccb',marginHorizontal: 15, marginBottom:20,marginTop:10}}>{BlogInfo[0].title}</Text>

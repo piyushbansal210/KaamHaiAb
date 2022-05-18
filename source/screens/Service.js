@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, ScrollView, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView, Dimensions,Pressable } from 'react-native'
 import React from 'react'
 
 import ServiceData from '../assets/data/ServicesData'
@@ -7,11 +7,12 @@ import { FontAwesome } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('screen')
 
-export default function Service() {
+export default function Service({route,navigation}) {
 
-  const data = ServiceData[2]
+  const data = ServiceData.find(service=>service.serviceName === route.params.serviceName)
   return (
     <ScrollView>
+      
       <Text style={{ fontFamily: 'Medium', fontSize: 30, color: '#27cccb', margin: 15 }}>{data.serviceTitle}</Text>
       <Text style={{ fontFamily: 'Regular', fontSize: 20, color: '#000', margin: 15, lineHeight: 20 }}>{data.serviceText}</Text>
       <Image
@@ -45,9 +46,9 @@ export default function Service() {
         }
       </View>
       <Text style={{ fontFamily: 'Regular', fontSize: 20, color: '#000', margin: 15 }}>{data.serviceConclude}</Text>
-      <View style={{ backgroundColor: '#ff675f', padding: 10, alignItems: 'center', justifyContent: 'center', margin: 15 }}>
+      <Pressable onPress={()=>navigation.navigate('Quote')} style={{ backgroundColor: '#ff675f', padding: 10, alignItems: 'center', justifyContent: 'center', margin: 15 }}>
         <Text style={{ fontFamily: 'Medium', color: 'white', fontSize: 20 }}>CLICK HERE TO  KNOW MORE</Text>
-      </View>
+      </Pressable>
 
     </ScrollView>
   )

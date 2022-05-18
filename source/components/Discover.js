@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native'
 import React from 'react'
 import { Feather } from '@expo/vector-icons';
 
@@ -6,16 +6,16 @@ const { width, height } = Dimensions.get("screen");
 
 export default function Discover(props) {
     return (
-        <View style={[styles.container,props.styleContainer]}>
-            <Text style={[styles.header,props.styleHeader]}>{props.Standout[0].title}</Text>
+        <View style={[styles.container, props.styleContainer]}>
+            <Text style={[styles.header, props.styleHeader]}>{props.Standout[0].title}</Text>
             <Text style={styles.context}>{props.Standout[0].context}</Text>
             {
-                props.Standout[0].buttonText.length>0?<View style={styles.button}>
-                <Feather name="plus" size={18} color="white" />
-                <Text style={styles.buttonText}>{props.Standout[0].buttonText}</Text>
-            </View>:null
+                props.Standout[0].buttonText.length > 0 ? <Pressable style={styles.button} onPress={()=>props.navigation.navigate(props.Standout[0].navigate)}>
+                    <Feather name="plus" size={18} color="white" />
+                    <Text style={styles.buttonText}>{props.Standout[0].buttonText}</Text>
+                </Pressable> : null
             }
-            
+
         </View>
     )
 }

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet ,Pressable} from 'react-native'
 import React from 'react'
 
 import JobsData from '../assets/data/Jobs'
@@ -7,16 +7,15 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function JobPortal() {
+export default function JobPortal({navigation}) {
 
-    console.log(JobsData)
     return (
         <View>
             {
                 JobsData.map(item => {
                     return (
 
-                            <View key={item.id}  style={styles.container}>
+                            <Pressable key={item.id}  style={styles.container} onPress={()=>navigation.navigate('Application',{jobName: item.job})}>
                                 <Text style={styles.jobHeader}>{item.job}</Text>
                                 <View style={{marginTop:10}}>
                                     <View style={styles.innerBlock}>
@@ -33,7 +32,7 @@ export default function JobPortal() {
                                     <AntDesign name="arrowright" size={20} color="#27cccb" />
                                 </View>
                                 
-                            </View>
+                            </Pressable>
                     )
                 })
             }
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     container: {
         borderWidth: 0.5,
         borderColor: '#C1BCBB',
-        marginBottom: 10,
+        marginBottom: 15,
         padding: 10
     },
     innerBlock: {

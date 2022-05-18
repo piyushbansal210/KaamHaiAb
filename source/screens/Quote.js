@@ -5,7 +5,7 @@ const { width, height } = Dimensions.get('screen')
 export default function Quote() {
 
     return (
-        <ScrollView>
+        <ScrollView style={{backgroundColor:'white'}}>
             <View style={{ backgroundColor: '#27cccb', padding: 0, alignItems: 'center', justifyContent: 'center', margin: 15 }}>
                 <Text style={{ fontFamily: 'Demi', color: '#000', fontSize: 30, margin: 15, color: 'white' }}>Your Contact Details</Text>
 

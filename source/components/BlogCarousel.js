@@ -1,12 +1,11 @@
-import { View, Text, StyleSheet,FlatList,ScrollView } from 'react-native'
+import { View, Text, StyleSheet,FlatList,ScrollView, Pressable } from 'react-native'
 import React, { useEffect ,useState} from 'react'
 
 import Blog from './Blog'
 
 import BlogData from '../assets/data/Blog';
 
-
-export default function BlogCarousel() {
+export default function BlogCarousel({navigation}) {
     const [index,setIndex] = useState(0);
     useEffect(()=>{
         setTimeout(()=>{
@@ -20,10 +19,10 @@ export default function BlogCarousel() {
         
     },[index])
     return (
-        <View  style={styles.container}>
+        <Pressable  style={styles.container} onPress={()=>navigation.navigate('Blog') }>
             <Text  style={styles.blogHeader}>Blogs</Text>
             <Blog item={BlogData[index]}/>
-        </View>
+        </Pressable>
     )
 }
 
