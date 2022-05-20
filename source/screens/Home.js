@@ -1,4 +1,4 @@
-import { View, Text, Image, Dimensions, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, Image, Dimensions, StyleSheet, ScrollView,LogBox } from 'react-native'
 import React from 'react'
 import { FlatList } from 'react-native-gesture-handler';
 import Standout from '../assets/data/Standout'
@@ -23,6 +23,7 @@ import LOGO from '../assets/images/companylogo.png'
 import Slider from '../components/Slider';
 
 const { width, height } = Dimensions.get('screen')
+LogBox.ignoreAllLogs();
 
 export default function Home({navigation}) {
   return (

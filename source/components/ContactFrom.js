@@ -48,9 +48,10 @@ export default function ContactFrom() {
           Comment: "",
         }}
         validationSchema={DisplayingErrorMessagesSchema}
-        onSubmit={values => {
+        onSubmit={(values, {resetForm}) => {
           // same shape as initial values
           submitToFirebase(values)
+          resetForm({values:''})
         }}
       >
         {({  handleChange, handleBlur, handleSubmit, values ,errors}) => (

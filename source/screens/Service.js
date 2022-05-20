@@ -25,7 +25,7 @@ export default function Service({route,navigation}) {
         {
           data.benefits.map(item =>
           (
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5 }}>
+            <View key={item.id} style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5 }}>
               <FontAwesome name="circle-o" size={18} color="black" />
               <Text style={{ fontFamily: 'Regular', fontSize: 20, color: '#000', marginLeft: 3 }}>{item}</Text>
             </View>
@@ -38,7 +38,7 @@ export default function Service({route,navigation}) {
         <Text style={{ fontFamily: 'Medium', fontSize: 25, color: '#717171', marginBottom: 10 }}>Why Choose WebRoot Technologies</Text>
         {
           data.chooseWebRoot.map(item => (
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5 }}>
+            <View key={item.id} style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5 }}>
               <FontAwesome name="circle-o" size={18} color="black" />
               <Text style={{ fontFamily: 'Regular', fontSize: 20, color: '#000', marginLeft: 3 }}>{item}</Text>
             </View>

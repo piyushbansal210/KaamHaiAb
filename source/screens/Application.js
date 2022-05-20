@@ -125,11 +125,12 @@ export default function Application({ route }) {
           CoverLetter: "",
         }}
         validationSchema={DisplayingErrorMessagesSchema}
-        onSubmit={values => {
+        onSubmit={(values, {resetForm}) => {
           // same shape as initial values
           if (checked === true && fileUri.length > 0) {
             sendToFireBase(values)
           }
+          resetForm({values:''})
         }}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (

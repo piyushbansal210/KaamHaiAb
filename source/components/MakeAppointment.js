@@ -35,11 +35,12 @@ export default function MakeAppointment() {
                 Country: "",
             }}
             validationSchema={DisplayingErrorMessagesSchema}
-            onSubmit={values => {
+            onSubmit={(values, {resetForm}) => {
                 // same shape as initial values
                 addDoc(collection(db, 'Appointment'), values)
                     .then(() => {
                         toggleModal()
+                        resetForm({values:''})
                     })
                     .catch((err) => {
                         alert(err)

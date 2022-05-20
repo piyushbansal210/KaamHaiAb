@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     map: {
         marginHorizontal:15,
         marginBottom:15,
-        width:width-30,
+        flex:1,
         height: width-30,
     },
 })
