@@ -3,24 +3,36 @@ import React from 'react'
 import { Checkbox } from 'react-native-paper';
 const { width, height } = Dimensions.get('screen')
 import * as DocumentPicker from "expo-document-picker";
+import Modal from "react-native-modal";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
+import { db, storage } from '../../Firebase'
 
 import { Formik, } from 'formik';
 import * as Yup from 'yup';
+import { addDoc, doc, setDoc, collection } from "firebase/firestore";
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
-  Name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-  Email: Yup.string().email('Invalid email').required('Required'),
-  PhoneNumber: Yup.string().min(8, 'Invalid Mobile Number').max(15, 'Invalid Mobile Number').required('Required'),
-  CoverLetter: Yup.string().min(3, 'Too Short!').required('Required'),
+  Name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required(),
+  Email: Yup.string().email('Invalid email').required(),
+  PhoneNumber: Yup.string().min(8, 'Invalid Mobile Number').max(15, 'Invalid Mobile Number').required(),
+  CoverLetter: Yup.string().min(3, 'Too Short!').required()
 });
 
 
 export default function Application({ route }) {
-  const [checked, setChecked] = React.useState(false);
-  const [fileName, setFileName] = React.useState('No File Selected');
-  const [fileUri,setFileUri] = React.useState('');
-  const Job = route.params.jobName;
 
+  const [isModalVisible, setModalVisible] = React.useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+  const [fileName, setFileName] = React.useState('')
+  const [fileUri, setFileUri] = React.useState('')
+  const [job, setJob] = React.useState('')
+  const [checked, setChecked] = React.useState(false)
+  React.useEffect(() => {
+    setJob(route.params.jobName)
+  }, [])
 
   const pickDocument = async () => {
     let result = await DocumentPicker.getDocumentAsync({});
@@ -28,9 +40,78 @@ export default function Application({ route }) {
     setFileUri(result.uri)
   };
 
-  function sendToFireBase(values){
-    console.log(values)
+
+
+
+  const postImage = async (name, values) => {
+    const link = name+" / "+values.Email
+    console.log(values.Email)
+    const uri = fileUri;
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    const storageRef = ref(storage, 'resume/' + link);
+    const uploadTask = uploadBytesResumable(storageRef, blob);
+
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        // A full list of error codes is available at
+        // https://firebase.google.com/docs/storage/web/handle-errors
+        switch (error.code) {
+          case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
+          case 'storage/canceled':
+            // User canceled the upload
+            break;
+
+          // ...
+
+          case 'storage/unknown':
+            // Unknown error occurred, inspect error.serverResponse
+            break;
+        }
+      },
+      () => {
+        // Upload completed successfully, now we can get the download URL
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          savePostData(downloadURL,values)
+        });
+      }
+    );
+
+
   }
+
+  const savePostData = (downloadURL,values) => {
+    values.link  = downloadURL
+
+    addDoc(collection(db,'resume'),values)
+    .then(()=>{
+      toggleModal()
+    })
+    .catch(err =>console.log(err))
+  }
+
+  function sendToFireBase(values) {
+    const name = values.Name
+    postImage(name, values)
+  }
+
+
 
 
 
@@ -46,13 +127,29 @@ export default function Application({ route }) {
         validationSchema={DisplayingErrorMessagesSchema}
         onSubmit={values => {
           // same shape as initial values
-          if(checked === true  && fileUri.length>0) {
+          if (checked === true && fileUri.length > 0) {
             sendToFireBase(values)
           }
         }}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
           <View style={styles.container}>
+            <Modal isVisible={isModalVisible} style={{}}>
+              <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', borderRadius: 10, padding: 20 }}>
+                <Text style={{ fontFamily: 'Medium', fontSize: 25 }}>Your Appointment Has been Submitted</Text>
+
+                <TouchableOpacity onPress={() => toggleModal()} style={{
+                  backgroundColor: 'black',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
+                  padding: 10,
+                  marginTop: 20
+                }}>
+                  <Text style={{ fontFamily: 'Medium', fontSize: 20, color: 'white' }}>Close</Text>
+                </TouchableOpacity>
+              </View>
+            </Modal>
             <Text style={{ fontFamily: 'Demi', color: '#000', fontSize: 30 }}>Apply  For This Position</Text>
             <View style={styles.inputContainer}>
               <Text style={styles.formTitle}>Full Name</Text>
@@ -167,8 +264,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Medium',
     fontSize: 20
   },
-  errorText:{
-    fontFamily:'Regular',
+  errorText: {
+    fontFamily: 'Regular',
     color: 'red',
     fontSize: 16
   }

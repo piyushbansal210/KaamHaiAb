@@ -9,9 +9,9 @@ import MapView from 'react-native-maps';
 import Address from '../components/Address'
 import ContactFrom from '../components/ContactFrom';
 
-LogBox.ignoreAllLogs();
-
 export default function Contact() {
+
+    console.log('hi')
     return (
         <ScrollView style={{backgroundColor:'white'}}>
             <Suggestion/>

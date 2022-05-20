@@ -51,10 +51,12 @@ const Stack = createStackNavigator();
 
 function ServiceHome(){
     return(
-        <Stack.Navigator screenOptions={{
+        <Stack.Navigator
+            initialRouteName='HomeMain'
+        screenOptions={{
             headerShown: false
           }}>
-            <Stack.Screen name="Home" component={Home}  />
+            <Stack.Screen name="HomeMain" component={Home}  />
             <Stack.Screen name="Service" component={Service} />
             <Stack.Screen name="Quote" component={Quote} />
         </Stack.Navigator>
@@ -64,11 +66,11 @@ function ServiceHome(){
 function BlogFull(){
     return(
         <Stack.Navigator
-            initialRegion={Blog}
+            initialRouteName='BlogMain'
         screenOptions={{
             headerShown: false
           }}>
-            <Stack.Screen name="Blog" component={Blog}   />
+            <Stack.Screen name="BlogMain" component={Blog}   />
             <Stack.Screen name="BlogDisplay" component={BlogDisplay} />
         </Stack.Navigator>
     )
@@ -77,11 +79,11 @@ function BlogFull(){
 function CareerFull(){
     return(
         <Stack.Navigator
-            initialRegion={Jobs}
+            initialRouteName='JobsMain'
         screenOptions={{
             headerShown: false
           }}>
-            <Stack.Screen name="Jobs" component={Jobs}   />
+            <Stack.Screen name="JobsMain" component={Jobs}   />
             <Stack.Screen name="Application" component={Application} />
         </Stack.Navigator>
     )

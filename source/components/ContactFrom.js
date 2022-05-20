@@ -1,9 +1,13 @@
-import { View, Text, StyleSheet, TextInput, Dimensions, Pressable } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Dimensions, Pressable ,TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
 import { Formik, } from 'formik';
 import * as Yup from 'yup';
+import Modal from "react-native-modal";
 
 const { width, height } = Dimensions.get('screen')
+
+import {db} from '../../Firebase'
+import { collection,addDoc } from 'firebase/firestore';
 
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
@@ -17,8 +21,20 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 export default function ContactFrom() {
 
   const submitToFirebase = (values)=>{
-    console.log(values)
+    addDoc(collection(db,'Contact'), values)
+    .then(()=>{
+      toggleModal()
+    })
+    .catch((err)=>{
+      alert(err)
+    })
   }
+
+  const [isModalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
 
   return (
     <View style={styles.container}>
@@ -39,7 +55,22 @@ export default function ContactFrom() {
       >
         {({  handleChange, handleBlur, handleSubmit, values ,errors}) => (
           <View>
+            <Modal isVisible={isModalVisible} style={{}}>
+                        <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', borderRadius: 10, padding: 20 }}>
+                            <Text style={{ fontFamily: 'Medium', fontSize: 25 }}>Your Appointment Has been Submitted</Text>
 
+                            <TouchableOpacity onPress={() => toggleModal()} style={{
+                                backgroundColor: 'black',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                width: '100%',
+                                padding: 10,
+                                marginTop:20
+                            }}>
+                                <Text style={{ fontFamily: 'Medium', fontSize: 20,color:'white'}}>Close</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </Modal>
             <TextInput
               placeholder={"Comment"}
               style={styles.comment}
@@ -81,9 +112,9 @@ export default function ContactFrom() {
               onChangeText={handleChange('PhoneNumber')}
             />
             {errors.PhoneNumber && <Text style={styles.errorText}>*{errors.PhoneNumber}</Text>}
-            <Pressable style={styles.button} onPress={handleSubmit}>
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
               <Text style={styles.buttonText}>SUBMIT YOUR IDEA</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         )}
 

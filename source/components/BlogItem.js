@@ -5,7 +5,7 @@ import BlogData from '../assets/data/BlogData'
 const {width, height}=Dimensions.get('screen')
 
 export default function BlogItem({data,navigation}) {
-  console.log(data)
+  
   return (
     <Pressable style={styles.container} onPress={()=>navigation.navigate('BlogDisplay')}>
       <Image source={{uri:data.image}} style={styles.image} onProgress={()=>navigation.navigate('BlogDisplay')}/>
